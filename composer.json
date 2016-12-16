@@ -1,0 +1,28 @@
+{
+    "name": "sdclub/laravel-mipush",
+    "description": "MIPush expansion for Laravel",
+    "keywords": [
+        "Laravel5",
+        "Laravel",
+        "mipush"
+    ],
+    "homepage": "https://github.com/sdclub/laravel-mipush",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jamie",
+            "email": "wk1025@126.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "illuminate/support": "5.*",
+        "illuminate/config": "5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sdclub\\MiPush\\": "src/"
+        }
+    }
+}
