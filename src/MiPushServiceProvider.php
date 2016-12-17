@@ -24,10 +24,14 @@ class MiPushServiceProvider extends ServiceProvider {
 	 * @return [type]                   [description]
 	 */
 	public function register() {
-		$this->app['mipush'] = $this->app->share(function () {
-            return new MiPush();
+		// $this->app['mipush'] = $this->app->share(function () {
+		// 	return new MiPush();
+		// });
+        $this->app->singleton('mipush', function ($app) {
+            return new MiPush($app['config']);//config
         });
 	}
+
     /**
      * 获取提供者提供的服务
      * @author Jamie<327240570@qq.com>
