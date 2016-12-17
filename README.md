@@ -16,12 +16,14 @@
     4、配置 config/mipush.php
 
 #使用方法（待完善）
-    在控制器中 use MiPush;
+    在控制器中 
+    use MiPush;
+    
     在方法中
     public function index()
     {
         $regId = ; //你数据库中存储的regId ;
-        $data = ['notify_id' => 555, 'title' => '这是一个标题', 'description' => '推送texts', 'payload' => []];
+        $data = ['notify_id' => 123, 'title' => '这是一个标题', 'description' => '推送texts', 'payload' => []];
 
         //这个是只针对 Android的推送 自己选择使用
         MiPush::send_id($regId, $data, 'android');
