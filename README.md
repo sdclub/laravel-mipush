@@ -17,23 +17,21 @@
 
 #使用方法（待完善）
 
-在控制器中
-use MiPush;
+  在控制器中 use MiPush;
+  在方法中
+  public function index()
+  {
+      $regId = ; //你数据库中存储的regId ;
+      $data = ['notify_id' => 555, 'title' => '这是一个标题', 'description' => '推送texts', 'payload' => []];
 
-在方法中
-public function index()
-{
-    $regId = ; //你数据库中存储的regId ;
-    $data = ['notify_id' => 555, 'title' => '这是一个标题', 'description' => '推送texts', 'payload' => []];
-    
-    //这个是只针对 Android的推送 自己选择使用
-    MiPush::send_id($regId, $data, 'android');
-    //这个是只针对 ios的推送 自己选择使用
-    MiPush::send_id($regId, $data, 'ios');
+      //这个是只针对 Android的推送 自己选择使用
+      MiPush::send_id($regId, $data, 'android');
+      //这个是只针对 ios的推送 自己选择使用
+      MiPush::send_id($regId, $data, 'ios');
 
-    //下面这个是只针对 IOS的推送 自己选择使用
-    $data = ['content'=>'content','body'=>'这是内容','title'=>'这是一个标题','text'=>'texts'];
-    Getui::pushAPNL($DeviceToken,$data);
-}
+      //下面这个是只针对 IOS的推送 自己选择使用
+      $data = ['content'=>'content','body'=>'这是内容','title'=>'这是一个标题','text'=>'texts'];
+      Getui::pushAPNL($DeviceToken,$data);
+  }
 
 其它用法直接参考MiPush 类中的写法 后面会整理规范一些.
