@@ -175,9 +175,9 @@ class MiPush extends Sender {
 		$message->notifyId($data['notify_id']); // 通知类型。最多支持0-4 5个取值范围，同样的类型的通知会互相覆盖，不同类型可以在通知栏并存
 		$message->build();
 		// 	构建要发送的消息内容和消息的发送目标
-		// $targetMessage = new TargetedMessage();
-		// $targetMessage->setTarget('alias1', TargetedMessage::TARGET_TYPE_ALIAS); // 设置发送目标。可通过regID,alias和topic三种方式发送
-		// $targetMessage->setMessage($message1);
+		$targetMessage = new TargetedMessage();
+		$targetMessage->setTarget('alias1', TargetedMessage::TARGET_TYPE_ALIAS); // 设置发送目标。可通过regID,alias和topic三种方式发送
+		$targetMessage->setMessage($message1);
 		return $message;
 	}
 
@@ -196,7 +196,7 @@ class MiPush extends Sender {
 		$message->description($data['description']);
 		$message->soundUrl('default');
 		$message->badge('4');
-		$message->extra('payload', $payload);
+		$message->extra('payload', $data['payload']);
 		$message->build();
 		return $message;
 	}
