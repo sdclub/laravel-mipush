@@ -177,7 +177,7 @@ class MiPush extends Sender {
 		// 	构建要发送的消息内容和消息的发送目标
 		$targetMessage = new TargetedMessage();
 		$targetMessage->setTarget('alias1', TargetedMessage::TARGET_TYPE_ALIAS); // 设置发送目标。可通过regID,alias和topic三种方式发送
-		$targetMessage->setMessage($message1);
+		$targetMessage->setMessage($message);
 		return $message;
 	}
 
