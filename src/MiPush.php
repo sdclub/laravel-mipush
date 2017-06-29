@@ -166,6 +166,7 @@ class MiPush extends Sender {
 		Constants::setPackage($this->android['bundle_id']);
 		Constants::setSecret($this->android['app_secret']);
 		$message = new Builder();
+		
 		if(isset($data['is_through']) && $data['is_through'] == 1) {
 			$message->passThrough(1);
 		} else {
