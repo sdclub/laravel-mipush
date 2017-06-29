@@ -56,15 +56,21 @@ class MiPush extends Sender {
     /**
      * 根据regIds多条发送
      * @author Jamie<327240570@qq.com>
-     * @since  2016-12-17T05:17:07+0800
-     * @param  [type]                   $regIds  [description]
-     * @param  [type]                   $data    [description]
+     * @since  2017-06-30T01:44:46+0800
+     * @param  array                    $regIds  [description]
+     * @param  array                    $data    [description]
      * @param  string                   $client  [description]
      * @param  integer                  $retries [description]
      * @return [type]                            [description]
      */
-    public function send_ids($regIds, $data, $client = 'android', $retries = 1) {
-		
+    public function send_ids($regIds = [], $data = [], $client = 'android', $retries = 1) {
+		if ($client == 'ios') {
+    		$message = $this->build_ios($data);
+    	} else {
+    		$message = $this->build_androud($data);
+    	}
+    	$sender = new Sender();
+    	return $sender->sendToIds($message, $regIds)->getRaw();
 	}
 
 	/**
