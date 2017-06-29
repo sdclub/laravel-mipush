@@ -9,32 +9,35 @@
 namespace Sdclub\MiPush\XmPush;
 
 class TargetedMessage {
-	const TARGET_TYPE_REGID = 1;
-	const TARGET_TYPE_ALIAS = 2;
-	const TARGET_TYPE_USER_ACCOUNT = 3;
-	private $targetType;
-	private $target;
-	private $message;
-	
-	public function __construct(){
-		
-	}
-	
-	public function setTarget($target,$targetType){
-		$this->targetType = $targetType;
-		$this->target = $target;
-	}
-	
-	public function setMessage(Message $message){
-		$this->message = $message;
-	}
-	
-	public function getFields(){
-		return array(
-				'target' => $this->target,
-				'message' => $this->message->getJSONInfos()
-		);
-	}
+    const TARGET_TYPE_REGID = 1;
+    const TARGET_TYPE_ALIAS = 2;
+    const TARGET_TYPE_USER_ACCOUNT = 3;
+    private $targetType;
+    private $target;
+    /**
+     * @var Message
+     */
+    private $message;
+
+    public function __construct() {
+
+    }
+
+    public function setTarget($target, $targetType) {
+        $this->targetType = $targetType;
+        $this->target = $target;
+    }
+
+    public function setMessage(Message $message) {
+        $this->message = $message;
+    }
+
+    public function getFields() {
+        return array(
+            'target' => $this->target,
+            'message' => $this->message->getJSONInfos()
+        );
+    }
 }
 
 ?>

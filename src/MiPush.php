@@ -2,7 +2,6 @@
 namespace Sdclub\MiPush;
 
 use Illuminate\Config\Repository;
-use Illuminate\Support\Facades\Config;
 use Sdclub\MiPush\XmPush\Builder;
 use Sdclub\MiPush\XmPush\IOSBuilder;
 use Sdclub\MiPush\XmPush\HttpBase;
@@ -167,10 +166,16 @@ class MiPush extends Sender {
 		Constants::setPackage($this->android['bundle_id']);
 		Constants::setSecret($this->android['app_secret']);
 		$message = new Builder();
-		$message->title($data['title']);  // 通知栏的title
-		$message->description($data['description']); // 通知栏的descption
-		$message->passThrough(0);  // 这是一条通知栏消息，如果需要透传，把这个参数设置成1,同时去掉title和descption两个参数
+		if(isset($data['is_through']) && $data['is_through'] == 1) {
+			$message->passThrough(1);
+		} else {
+			$message->title($data['title']);  // 通知栏的title
+			$message->description($data['description']); // 通知栏的descption
+			$message->passThrough(0);  // 这是一条通知栏消息，如果需要透传，把这个参数设置成1,同时去掉title和descption两个参数
+		}
+		
 		$message->payload(json_encode($data['payload'])); // 携带的数据，点击后将会通过客户端的receiver中的onReceiveMessage方法传入。
+		$message->extra(Builder::notifyEffect, 1); // 此处设置预定义点击行为，1为打开app
 		$message->extra(Builder::notifyForeground, 1); // 应用在前台是否展示通知，如果不希望应用在前台时候弹出通知，则设置这个参数为0
 		$message->notifyId($data['notify_id']); // 通知类型。最多支持0-4 5个取值范围，同样的类型的通知会互相覆盖，不同类型可以在通知栏并存
 		$message->build();
