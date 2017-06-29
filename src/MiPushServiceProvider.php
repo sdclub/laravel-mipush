@@ -28,6 +28,7 @@ class MiPushServiceProvider extends ServiceProvider {
             return new MiPush($app['config']);//config
         });
 	}
+	
     /**
      * 获取提供者提供的服务
      * @author Jamie<327240570@qq.com>
